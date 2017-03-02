@@ -1,0 +1,8 @@
+name: url_parse
+version: 0.1.0
+authors:
+  - axetroy <troy450409405@gmail.com>
+description: An advanced url parser supporting git urls too.
+homepage: https://github.com/axetroy/protocols
+dev_dependencies:
+  test:
