@@ -1,13 +1,13 @@
 import 'package:test/test.dart';
 
-import '../lib/url-parse.dart' show urlParser;
+import '../lib/url-parse.dart' show urlParse;
 
 @TestOn('linux || mac-os || posix || content-shell || window')
 void main() {
   group('test http url > ', () {
     test("Parse an https url.", () {
       String url = 'https://www.google.com';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('https'));
       expect(result["protocols"], equals(['https']));
       expect(result["port"], equals(443));
@@ -20,7 +20,7 @@ void main() {
 
     test("Parse an http url with query.", () {
       String url = 'http://www.google.com?a=b&b=c';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('http'));
       expect(result["protocols"], equals(['http']));
       expect(result["port"], equals(80));
@@ -33,7 +33,7 @@ void main() {
 
     test("Parse an https url with query and hash.", () {
       String url = 'http://www.google.com?a=b&b=c#readme';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('http'));
       expect(result["protocols"], equals(['http']));
       expect(result["port"], equals(80));
@@ -46,7 +46,7 @@ void main() {
 
     test("Parse an https url with hash and query.", () {
       String url = 'http://www.google.com#readme?a=b&b=c';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('http'));
       expect(result["protocols"], equals(['http']));
       expect(result["port"], equals(80));
@@ -59,7 +59,7 @@ void main() {
 
     test("Parse an https url with user info.", () {
       String url = 'http://axetroy:1111@www.google.com?a=b&b=c#readme';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('http'));
       expect(result["protocols"], equals(['http']));
       expect(result["port"], equals(80));
@@ -74,7 +74,7 @@ void main() {
 
     test("Parse an https url with specify port.", () {
       String url = 'http://axetroy:1111@www.google.com:8080?a=b&b=c#readme';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('http'));
       expect(result["protocols"], equals(['http']));
       expect(result["port"], equals(8080));
@@ -91,7 +91,7 @@ void main() {
   group('test git url > ', () {
     test("Parse an git url.", () {
       String url = 'git@github.com:axetroy/protocols.git';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('git'));
       expect(result["protocols"], equals(['git']));
       expect(result["port"], equals(443));
@@ -104,7 +104,7 @@ void main() {
 
     test("Parse an git url with http+git proto.", () {
       String url = 'git+https@github.com:axetroy/protocols.git';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('git'));
       expect(result["protocols"], equals(['git', 'https']));
       expect(result["port"], equals(443));
@@ -118,7 +118,7 @@ void main() {
 
     test("Parse an gitlab url .", () {
       String url = 'git@gitlab.com:kadu/kadu.git';
-      final Map<String, dynamic> result = urlParser(url);
+      final Map<String, dynamic> result = urlParse(url);
       expect(result["protocol"], equals('git'));
       expect(result["protocols"], equals(['git']));
       expect(result["port"], equals(443));
@@ -135,8 +135,8 @@ void main() {
     test("thier key's length are same", () {
       String url1 = 'git@gitlab.com:kadu/kadu.git';
       String url2 = 'http://www.google.com?a=b&b=c';
-      final Map<String, dynamic> result1 = urlParser(url1);
-      final Map<String, dynamic> result2 = urlParser(url2);
+      final Map<String, dynamic> result1 = urlParse(url1);
+      final Map<String, dynamic> result2 = urlParse(url2);
       expect(result1.keys.length, result2.keys.length);
     });
   });
