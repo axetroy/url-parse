@@ -8,7 +8,7 @@ Map<String, dynamic> urlParse(String url) {
 
   // git@xxx.com
   if (new RegExp(r'^\s?[\w\+]+\@').hasMatch(url)) {
-    List<List<String>> listOfMatches = new RegExp(r'^(([\w\+]+)\@([^\:\/]+))\:(\w+)(\/[^\?]+)')
+    List<List<String>> listOfMatches = new RegExp(r'^(([\w\+]+)\@([^\:\/]+))\:([\w\_\-]+)(\/[^\?]+)')
       .allMatches(url)
       .map((Match match) {
       // 0 => source href
