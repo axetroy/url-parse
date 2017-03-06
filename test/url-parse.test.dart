@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../lib/url-parse.dart' show urlParse;
+import '../lib/url_parse.dart' show urlParse;
 
 @TestOn('linux || mac-os || posix || content-shell || window')
 void main() {
